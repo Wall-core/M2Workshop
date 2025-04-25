@@ -11,6 +11,7 @@ It is still in development. It handles everything correctly from my testing, but
 This script took well over 200+ hours to write, and I believe it will come in very handy for anyone interested in editing m2 files in 010. If you enjoy the work and wish to help support my efforts in creating useful tools, then please consider supporting me through patreon or paypal.
 
 https://www.patreon.com/wallcraft
+
 https://www.paypal.com/biz/fund?id=3LY74ZUQHWCG6
 
 With that said, enjoy.
