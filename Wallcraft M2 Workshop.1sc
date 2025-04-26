@@ -4,10 +4,11 @@
 // ================================================================================================
 //  Authors: Wall
 //      File: Wallcraft M2 Workshop.1sc
-//  Version: 1.0.12
+//  Version: 1.0.13
 //  Purpose: Resizes M2 Models
 //  Category: M2 Editing
 //  History: This script allows detailed modifying of Blizzard M2 files, including resizing and rescaling.
+//      1.0.13 2025-04-26 Wall: Add missing particle variables
 //      1.0.12 2025-04-21 Wall: Add additional debug
 //      1.0.11 2025-04-20 Wall: Add remaining particle tracks
 //      1.0.10 2025-04-19 Wall: Add remaining ribbon tracks
@@ -224,6 +225,9 @@ float particleColorFloatR                      = 1.00f; // Particle Color R Rang
 float particleColorFloatG                      = 1.00f; // Particle Color G Range --- 0.00 - 1.00 -
 float particleColorFloatB                      = 1.00f; // Particle Color B Range --- 0.00 - 1.00 -
 float particleColorFloatA                      = 1.00f; // Particle Color A Range --- 0.00 - 1.00 -
+float particleAlphaR                           = 1.00f; // Particle Alpha R ---------- Max: 32767 -
+float particleAlphaG                           = 1.00f; // Particle Alpha G ---------- Max: 32767 -
+float particleAlphaB                           = 1.00f; // Particle Alpha B ---------- Max: 32767 -
 float particleScaleX                           = 1.00f; // Particle Scale X ------- Default: 1.00 -
 float particleScaleY                           = 1.00f; // Particle Scale Y ------- Default: 1.00 -
 float particleScaleVaryX                       = 1.00f; // Particle Scale Vary X -- Default: 1.00 -
@@ -235,7 +239,10 @@ float particleTwinkleScaleX                    = 1.00f; // Particle Twinkle X --
 float particleTwinkleScaleY                    = 1.00f; // Particle Twinkle Y ----- Default: 1.00 -
 float particleBurst                            = 1.00f; // Particle Burst --------- Default: 1.00 -
 float particleDrag                             = 1.00f; // Particle Drag ---------- Default: 1.00 -
+float particleBaseSpin                         = 1.00f; // Particle Base Spin ----- Default: 1.00 -
+float particleBaseSpinVary                     = 1.00f; // Particle Base Spin Var - Default: 1.00 -
 float particleSpin                             = 1.00f; // Particle Spin ---------- Default: 1.00 -
+float particleSpinVary                         = 1.00f; // Particle Spin Vary ----- Default: 1.00 -
 float particleTumbleMinX                       = 1.00f; // Particle Tumble Min X -- Default: 1.00 -
 float particleTumbleMinY                       = 1.00f; // Particle Tumble Min Y -- Default: 1.00 -
 float particleTumbleMinZ                       = 1.00f; // Particle Tumble Min Z -- Default: 1.00 -
@@ -8695,9 +8702,9 @@ if (particleEnabled || basicScaling)
                         if (!readOnly)
                         {
                             // Write
-                            WriteFloat(pos, x * particleColorR);
-                            WriteFloat(pos, y * particleColorG);
-                            WriteFloat(pos, z * particleColorB);
+                            WriteFloat(pos, x * particleColorFloatR);
+                            WriteFloat(pos, y * particleColorFloatG);
+                            WriteFloat(pos, z * particleColorFloatB);
                             // Output
                             if (debug)
                             {
