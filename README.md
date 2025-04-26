@@ -4,7 +4,7 @@ This script should help replace a lot of time spent performing basic operations 
 
 This script also features .anim file autoloading. It will parse the related .anim files and open/read/modify/write/save/close them.
 
-To use the script, simply load it into 010 Editor and run it on the m2 file. Currently, only vanilla/tbc/wotlk are supported. I didn't have any cata+ clients while writing it, but added the offset tables for future m2s. If you want to fill them in, or send me a pack of m2s from a specific expansion, I'll add support for them.
+To use the script, simply load it into 010 Editor, modify the desired configs, and run it on the m2 file. Currently, only vanilla/tbc/wotlk are supported. I didn't have any cata+ clients while writing it, but added the offset tables for future m2s. If you want to fill them in, or send me a pack of m2s from a specific expansion, I'll add support for them.
 
 It is still in development. It handles everything correctly from my testing, but there's still a few features that I'll be adding in the future. Currently, color can only be downshifted as I haven't written RGB shifting functions yet. As well, I plan on inlining all functions in the future to make the code much cleaner; for now, it's just fully outlined according to m2 structures.
 
