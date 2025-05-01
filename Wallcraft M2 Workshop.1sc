@@ -4,10 +4,11 @@
 // ================================================================================================
 //  Authors: Wall
 //      File: Wallcraft M2 Workshop.1sc
-//  Version: 1.0.13
+//  Version: 1.0.14
 //  Purpose: Resizes M2 Models
 //  Category: M2 Editing
 //  History: This script allows detailed modifying of Blizzard M2 files, including resizing and rescaling.
+//      1.0.14 2025-05-01 Wall: Fix typo in debug output
 //      1.0.13 2025-04-26 Wall: Add missing particle variables
 //      1.0.12 2025-04-21 Wall: Add additional debug
 //      1.0.11 2025-04-20 Wall: Add remaining particle tracks
@@ -54,7 +55,7 @@ int readOnly    = 0; // Enable to only read data        // Enable(1)/Disable(0) 
 int autoSave    = 0; // Enable to auto save file        // Enable(1)/Disable(0) ------ Default: 0 -
 int autoClose   = 0; // Enable to auto close file       // Enable(1)/Disable(0) ------ Default: 0 -
 int silent      = 0; // Enable to minimize output       // Enable(1)/Disable(0) ------ Default: 0 -
-int debug       = 0; // Enable to allow debug output    // Enable(1)/Disable(0) ------ Default: 0 -
+int debug       = 1; // Enable to allow debug output    // Enable(1)/Disable(0) ------ Default: 0 -
 int testRun     = 0; // Enable to only run one block    // Enable(1)/Disable(0) ------ Default: 0 -
 // ==== PARAMETERS ================================================================================
 int basicScaling        = 1; // Overrides all modifiers // Enable(1)/Disable(0) ------ Default: 1 -
@@ -8709,7 +8710,7 @@ if (particleEnabled || basicScaling)
                             if (debug)
                             {
                                 Printf("    Particle[%u] New Color Value[%d] Subtrack[%d] @ 0x%X", blockIter, trackIter, subIter, pos);
-                                Printf(" = (%.6f, %.6f, %.6f)\n", x. y, z);
+                                Printf(" = (%.6f, %.6f, %.6f)\n", x, y, z);
                             }
                         }
                         // Test
