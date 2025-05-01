@@ -8775,7 +8775,7 @@ if (particleEnabled || basicScaling)
                             if (debug)
                             {
                                 Printf("    Particle[%u] New Alpha Value[%d] Subtrack[%d] @ 0x%X", blockIter, trackIter, subIter, pos);
-                                Printf(" = (%u, %u, %u)\n", x. y, z);
+                                Printf(" = (%u, %u, %u)\n", x, y, z);
                             }
                         }
                         // Test
@@ -8838,7 +8838,7 @@ if (particleEnabled || basicScaling)
                             if (debug)
                             {
                                 Printf("    Particle[%u] New Scale Value[%d] Subtrack[%d] @ 0x%X", blockIter, trackIter, subIter, pos);
-                                Printf(" = (%u, %u)\n", x. y);
+                                Printf(" = (%u, %u)\n", x, y);
                             }
                         }
                         // Test
