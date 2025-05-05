@@ -4,10 +4,11 @@
 // ================================================================================================
 //  Authors: Wall
 //      File: Wallcraft M2 Workshop.1sc
-//  Version: 1.0.14
+//  Version: 1.0.15
 //  Purpose: Resizes M2 Models
 //  Category: M2 Editing
 //  History: This script allows detailed modifying of Blizzard M2 files, including resizing and rescaling.
+//      1.0.15 2025-05-04 Wall: Disable cameras in basicScaling
 //      1.0.14 2025-05-01 Wall: Fix typo in debug output
 //      1.0.13 2025-04-26 Wall: Add missing particle variables
 //      1.0.12 2025-04-21 Wall: Add additional debug
@@ -55,7 +56,7 @@ int readOnly    = 0; // Enable to only read data        // Enable(1)/Disable(0) 
 int autoSave    = 0; // Enable to auto save file        // Enable(1)/Disable(0) ------ Default: 0 -
 int autoClose   = 0; // Enable to auto close file       // Enable(1)/Disable(0) ------ Default: 0 -
 int silent      = 0; // Enable to minimize output       // Enable(1)/Disable(0) ------ Default: 0 -
-int debug       = 1; // Enable to allow debug output    // Enable(1)/Disable(0) ------ Default: 0 -
+int debug       = 0; // Enable to allow debug output    // Enable(1)/Disable(0) ------ Default: 0 -
 int testRun     = 0; // Enable to only run one block    // Enable(1)/Disable(0) ------ Default: 0 -
 // ==== PARAMETERS ================================================================================
 int basicScaling        = 1; // Overrides all modifiers // Enable(1)/Disable(0) ------ Default: 1 -
@@ -320,8 +321,9 @@ int byteSize = 0x01;                                    // Byte Size -----------
 int shortSize = 0x02;                                   // Short Size ------------- Default: 0x02 -
 int floatSize = 0x04;                                   // Float Size ------------- Default: 0x04 -
 int intSize = 0x04;                                     // Int Size --------------- Default: 0x04 -
-int quaternionSize = 0x08;                              // C4Quaternion Size ------ Default: 0x08 -
+int quaternionSize = 0x08;                              // C4CompQuaternion Size -- Default: 0x08 -
 int vectorSize = 0x0C;                                  // C3Vector Size ---------- Default: 0x0C -
+int planeSize = 0x10;                                   // C4Plane Size ----------- Default: 0x10 -
 int startOffset = 0x00;                                 // File Start ------------- Default: 0x00 -
 int versionOffset = 0x04;                               // File Version Offset ---- Default: 0x04 -
 int version = ReadUInt(versionOffset);                  // File Version ---------------------------
@@ -2740,45 +2742,39 @@ if (boneEnabled || basicScaling)
                 // Iterate
                 for (trackIter = 0; trackIter < trackKeyPairs; trackIter++)
                 {
-                    // Alpha, Vanilla, The Burning Crusade
-                    if (expansion <= 2)
+                    // Alpha, Vanilla
+                    if (expansion <= 1)
                     {
                         // Move
-                        pos = trackKeyPairsOffset + trackIter * quaternionSize;                        
+                        pos = trackKeyPairsOffset + trackIter * planeSize;                        
                         // Read
-                        sx = ReadUShort(pos + (shortSize * 0));
-                        sy = ReadUShort(pos + (shortSize * 1));
-                        sz = ReadUShort(pos + (shortSize * 2));
-                        sw = ReadUShort(pos + (shortSize * 3));
-                        // Short to float
-                        x = stf(sx);
-                        y = stf(sy);
-                        z = stf(sz);
-                        w = stf(sw);
+                        x = ReadFloat(pos + (floatSize * 0));
+                        y = ReadFloat(pos + (floatSize * 1));
+                        z = ReadFloat(pos + (floatSize * 2));
+                        w = ReadFloat(pos + (floatSize * 3));
                         // Output
                         if (debug) 
                         {
                             Printf("    Bone[%u] Current Rotation Value[%d] @ 0x%X", blockIter, trackIter, pos);
-                            Printf(" = (%.6f, %.6f, %.6f)\n", x, y, z);
+                            Printf(" = (%.6f, %.6f, %.6f, %.6f)\n", x, y, z, w);
                         }
                         // Write
                         if (!readOnly)
                         {
-                            // Float to short
-                            sx = fts(x * boneRotationPositionX);
-                            sy = fts(y * boneRotationPositionY);
-                            sz = fts(z * boneRotationPositionZ);
-                            sw = fts(w * boneRotationPositionW);
                             // Write
-                            WriteShort(pos + (shortSize * 0), sx);
-                            WriteShort(pos + (shortSize * 1), sy);
-                            WriteShort(pos + (shortSize * 2), sz);
-                            WriteShort(pos + (shortSize * 3), sw);
+                            x = x * boneRotationPositionX;
+                            y = y * boneRotationPositionY;
+                            z = z * boneRotationPositionZ;
+                            w = w * boneRotationPositionW;
+                            WriteFloat(pos + (floatSize * 0), x);
+                            WriteFloat(pos + (floatSize * 1), y);
+                            WriteFloat(pos + (floatSize * 2), z);
+                            WriteFloat(pos + (floatSize * 3), w);
                             // Output
                             if (debug) 
                             {
                                 Printf("    Bone[%u] New Rotation Value[%d] @ 0x%X", blockIter, trackIter, pos);
-                                Printf(" = (%.6f, %.6f, %.6f)\n", x, y, z);
+                                Printf(" = (%.6f, %.6f, %.6f, %.6f)\n", x, y, z, w);
                             }
                         }
                         // Test
@@ -5042,7 +5038,7 @@ if (lightEnabled || basicScaling)
     }
 }
 // ==== CAMERAS ===================================================================================
-if (cameraEnabled || basicScaling)
+if (cameraEnabled && !basicScaling)
 {
     // Catch
     if (cameraCount > 0 && cameraOffset > 0)
