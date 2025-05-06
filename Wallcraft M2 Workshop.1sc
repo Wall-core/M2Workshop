@@ -4,10 +4,11 @@
 // ================================================================================================
 //  Authors: Wall
 //      File: Wallcraft M2 Workshop.1sc
-//  Version: 1.0.15
+//  Version: 1.0.16
 //  Purpose: Resizes M2 Models
 //  Category: M2 Editing
 //  History: This script allows detailed modifying of Blizzard M2 files, including resizing and rescaling.
+//      1.0.16 2025-05-06 Wall: Update bone rotation tracks to C4Vector for Vanilla
 //      1.0.15 2025-05-04 Wall: Disable cameras in basicScaling
 //      1.0.14 2025-05-01 Wall: Fix typo in debug output
 //      1.0.13 2025-04-26 Wall: Add missing particle variables
@@ -2775,6 +2776,54 @@ if (boneEnabled || basicScaling)
                             {
                                 Printf("    Bone[%u] New Rotation Value[%d] @ 0x%X", blockIter, trackIter, pos);
                                 Printf(" = (%.6f, %.6f, %.6f, %.6f)\n", x, y, z, w);
+                            }
+                        }
+                        // Test
+                        if (testRun)
+                        {
+                            Printf("TEST: Rotation complete.\n");
+                            break;
+                        }
+                    }
+                    // The Burning Crusade
+                    if (expansion = 2)
+                    {
+                        // Move
+                        pos = trackKeyPairsOffset + trackIter * quaternionSize;                        
+                        // Read
+                        sx = ReadUShort(pos + (shortSize * 0));
+                        sy = ReadUShort(pos + (shortSize * 1));
+                        sz = ReadUShort(pos + (shortSize * 2));
+                        sw = ReadUShort(pos + (shortSize * 3));
+                        // Short to float
+                        x = stf(sx);
+                        y = stf(sy);
+                        z = stf(sz);
+                        w = stf(sw);
+                        // Output
+                        if (debug) 
+                        {
+                            Printf("    Bone[%u] Current Rotation Value[%d] @ 0x%X", blockIter, trackIter, pos);
+                            Printf(" = (%.6f, %.6f, %.6f)\n", x, y, z);
+                        }
+                        // Write
+                        if (!readOnly)
+                        {
+                            // Float to short
+                            sx = fts(x * boneRotationPositionX);
+                            sy = fts(y * boneRotationPositionY);
+                            sz = fts(z * boneRotationPositionZ);
+                            sw = fts(w * boneRotationPositionW);
+                            // Write
+                            WriteShort(pos + (shortSize * 0), sx);
+                            WriteShort(pos + (shortSize * 1), sy);
+                            WriteShort(pos + (shortSize * 2), sz);
+                            WriteShort(pos + (shortSize * 3), sw);
+                            // Output
+                            if (debug) 
+                            {
+                                Printf("    Bone[%u] New Rotation Value[%d] @ 0x%X", blockIter, trackIter, pos);
+                                Printf(" = (%.6f, %.6f, %.6f)\n", x, y, z);
                             }
                         }
                         // Test
