@@ -58,10 +58,10 @@ int readOnly    = 0; // Enable to only read data        // Enable(1)/Disable(0) 
 int autoSave    = 0; // Enable to auto save file        // Enable(1)/Disable(0) ------ Default: 0 -
 int autoClose   = 0; // Enable to auto close file       // Enable(1)/Disable(0) ------ Default: 0 -
 int silent      = 0; // Enable to minimize output       // Enable(1)/Disable(0) ------ Default: 0 -
-int debug       = 1; // Enable to allow debug output    // Enable(1)/Disable(0) ------ Default: 0 -
+int debug       = 0; // Enable to allow debug output    // Enable(1)/Disable(0) ------ Default: 0 -
 int testRun     = 0; // Enable to only run one block    // Enable(1)/Disable(0) ------ Default: 0 -
 // ==== PARAMETERS ================================================================================
-int basicScaling        = 0; // Overrides all modifiers // Enable(1)/Disable(0) ------ Default: 1 -
+int basicScaling        = 1; // Overrides all modifiers // Enable(1)/Disable(0) ------ Default: 1 -
 int sequenceEnabled     = 1;                            // Enable(1)/Disable(0) ------ Default: 1 -
 int boneEnabled         = 1;                            // Enable(1)/Disable(0) ------ Default: 1 -
 int verticeEnabled      = 1;                            // Enable(1)/Disable(0) ------ Default: 1 -
