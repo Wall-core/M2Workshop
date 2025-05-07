@@ -4,10 +4,11 @@
 // ================================================================================================
 //  Authors: Wall
 //      File: Wallcraft M2 Workshop.1sc
-//  Version: 1.0.16
+//  Version: 1.0.17
 //  Purpose: Resizes M2 Models
 //  Category: M2 Editing
 //  History: This script allows detailed modifying of Blizzard M2 files, including resizing and rescaling.
+//      1.0.17 2025-05-07 Wall: Fix incorrect debug variable
 //      1.0.16 2025-05-06 Wall: Update bone rotation tracks to C4Vector for Vanilla
 //      1.0.15 2025-05-04 Wall: Disable cameras in basicScaling
 //      1.0.14 2025-05-01 Wall: Fix typo in debug output
@@ -57,10 +58,10 @@ int readOnly    = 0; // Enable to only read data        // Enable(1)/Disable(0) 
 int autoSave    = 0; // Enable to auto save file        // Enable(1)/Disable(0) ------ Default: 0 -
 int autoClose   = 0; // Enable to auto close file       // Enable(1)/Disable(0) ------ Default: 0 -
 int silent      = 0; // Enable to minimize output       // Enable(1)/Disable(0) ------ Default: 0 -
-int debug       = 0; // Enable to allow debug output    // Enable(1)/Disable(0) ------ Default: 0 -
+int debug       = 1; // Enable to allow debug output    // Enable(1)/Disable(0) ------ Default: 0 -
 int testRun     = 0; // Enable to only run one block    // Enable(1)/Disable(0) ------ Default: 0 -
 // ==== PARAMETERS ================================================================================
-int basicScaling        = 1; // Overrides all modifiers // Enable(1)/Disable(0) ------ Default: 1 -
+int basicScaling        = 0; // Overrides all modifiers // Enable(1)/Disable(0) ------ Default: 1 -
 int sequenceEnabled     = 1;                            // Enable(1)/Disable(0) ------ Default: 1 -
 int boneEnabled         = 1;                            // Enable(1)/Disable(0) ------ Default: 1 -
 int verticeEnabled      = 1;                            // Enable(1)/Disable(0) ------ Default: 1 -
@@ -2999,7 +3000,7 @@ if (boneEnabled || basicScaling)
             // Error
             if (trackTimestamps != trackKeyPairs)
             {
-                Printf("  WARNING: Animation Count (%u) does not match Pairs (%u)!\n", boneTimestamps, trackKeyPairs);
+                Printf("  WARNING: Animation Count (%u) does not match Pairs (%u)!\n", trackTimestamps, trackKeyPairs);
             }
             // Catch
             if (trackKeyPairs > 0 && trackKeyPairsOffset > 0) 
