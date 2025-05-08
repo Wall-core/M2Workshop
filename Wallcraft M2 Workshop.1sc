@@ -4,10 +4,11 @@
 // ================================================================================================
 //  Authors: Wall
 //      File: Wallcraft M2 Workshop.1sc
-//  Version: 1.0.17
+//  Version: 1.0.18
 //  Purpose: Resizes M2 Models
 //  Category: M2 Editing
 //  History: This script allows detailed modifying of Blizzard M2 files, including resizing and rescaling.
+//      1.0.18 2025-05-08 Wall: Fix typo in script
 //      1.0.17 2025-05-07 Wall: Fix incorrect debug variable
 //      1.0.16 2025-05-06 Wall: Update bone rotation tracks to C4Vector for Vanilla
 //      1.0.15 2025-05-04 Wall: Disable cameras in basicScaling
@@ -2748,7 +2749,7 @@ if (boneEnabled || basicScaling)
                     if (expansion <= 1)
                     {
                         // Move
-                        pos = trackKeyPairsOffset + trackIter * planeSize;                        
+                        pos = trackKeyPairsOffset + (trackIter * planeSize);                        
                         // Read
                         x = ReadFloat(pos + (floatSize * 0));
                         y = ReadFloat(pos + (floatSize * 1));
@@ -2787,7 +2788,7 @@ if (boneEnabled || basicScaling)
                         }
                     }
                     // The Burning Crusade
-                    if (expansion = 2)
+                    if (expansion == 2)
                     {
                         // Move
                         pos = trackKeyPairsOffset + trackIter * quaternionSize;                        
