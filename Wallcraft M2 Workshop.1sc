@@ -4,10 +4,11 @@
 // ================================================================================================
 //  Authors: Wall
 //      File: Wallcraft M2 Workshop.1sc
-//  Version: 1.0.19
+//  Version: 1.0.20
 //  Purpose: Resizes M2 Models
 //  Category: M2 Editing
 //  History: This script allows detailed modifying of Blizzard M2 files, including resizing and rescaling.
+//   1.0.20 2025-08-18 Wall: Fix Vertice Operator multiplication Z
 //   1.0.19 2025-08-04 Wall: Add Vertice Operator config for multiply or addition
 //   1.0.18 2025-05-08 Wall: Fix typo in script
 //   1.0.17 2025-05-07 Wall: Fix incorrect debug variable
@@ -3227,7 +3228,7 @@ if (verticeEnabled || basicScaling)
                 {
                     WriteFloat(pos + (floatSize * 0), x * verticePositionX);
                     WriteFloat(pos + (floatSize * 1), y * verticePositionY);
-                    WriteFloat(pos + (floatSize * 2), z - verticePositionZ);
+                    WriteFloat(pos + (floatSize * 2), z * verticePositionZ);
                 }
                 else
                 {
