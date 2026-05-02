@@ -4,10 +4,11 @@
 // ================================================================================================
 //  Authors: Wall
 //      File: Wallcraft M2 Workshop.1sc
-//  Version: 1.0.20
+//  Version: 1.0.21
 //  Purpose: Resizes M2 Models
 //  Category: M2 Editing
 //  History: This script allows detailed modifying of Blizzard M2 files, including resizing and rescaling.
+//   1.0.21 2026-04-27 Wall: Fix a few typos
 //   1.0.20 2025-08-18 Wall: Fix Vertice Operator multiplication Z
 //   1.0.19 2025-08-04 Wall: Add Vertice Operator config for multiply or addition
 //   1.0.18 2025-05-08 Wall: Fix typo in script
@@ -887,7 +888,7 @@ if (version)
         lightAmbientColorOffset         = lightOffset + lightAmbientColorPadding;
         lightAmbientColorSize           = 0x1C;
         lightAmbientIntensityPadding    = 0x2C;
-        lightAmbientIntensityOffset     = lightOffset + lightIntensityPadding;
+        lightAmbientIntensityOffset     = lightOffset + lightAmbientIntensityPadding;
         lightAmbientIntensitySize       = 0x1C;
         lightDiffuseColorPadding        = 0x48;
         lightDiffuseColorOffset         = lightOffset + lightDiffuseColorPadding;
@@ -1523,7 +1524,7 @@ if (version)
         lightAmbientIntensityOffset     = lightOffset + lightAmbientIntensityPadding;
         lightAmbientIntensitySize       = 0x14;
         lightDiffuseColorPadding        = 0x38;
-        lightDiffuseColorOffset         = lightOffset + LightDiffuseColorPadding;
+        lightDiffuseColorOffset         = lightOffset + lightDiffuseColorPadding;
         lightDiffuseColorSize           = 0x14;
         lightDiffuseIntensityPadding    = 0x4C;
         lightDiffuseIntensityOffset     = lightOffset + lightDiffuseIntensityPadding;
@@ -1742,7 +1743,7 @@ if (version)
         lightAmbientIntensityOffset     = lightOffset + lightAmbientIntensityPadding;
         lightAmbientIntensitySize       = 0x14;
         lightDiffuseColorPadding        = 0x38;
-        lightDiffuseColorOffset         = lightOffset + LightDiffuseColorPadding;
+        lightDiffuseColorOffset         = lightOffset + lightDiffuseColorPadding;
         lightDiffuseColorSize           = 0x14;
         lightDiffuseIntensityPadding    = 0x4C;
         lightDiffuseIntensityOffset     = lightOffset + lightDiffuseIntensityPadding;
@@ -1961,7 +1962,7 @@ if (version)
         lightAmbientIntensityOffset     = lightOffset + lightAmbientIntensityPadding;
         lightAmbientIntensitySize       = 0x14;
         lightDiffuseColorPadding        = 0x38;
-        lightDiffuseColorOffset         = lightOffset + LightDiffuseColorPadding;
+        lightDiffuseColorOffset         = lightOffset + lightDiffuseColorPadding;
         lightDiffuseColorSize           = 0x14;
         lightDiffuseIntensityPadding    = 0x4C;
         lightDiffuseIntensityOffset     = lightOffset + lightDiffuseIntensityPadding;
@@ -2177,7 +2178,7 @@ if (version)
         lightAmbientColorOffset         = lightOffset + lightAmbientColorPadding;
         lightAmbientColorSize           = 0x1C;
         lightAmbientIntensityPadding    = 0x2C;
-        lightAmbientIntensityOffset     = lightOffset + lightIntensityPadding;
+        lightAmbientIntensityOffset     = lightOffset + lightAmbientIntensityPadding;
         lightAmbientIntensitySize       = 0x1C;
         lightDiffuseColorPadding        = 0x48;
         lightDiffuseColorOffset         = lightOffset + lightDiffuseColorPadding;
@@ -3782,7 +3783,7 @@ if (transformEnabled && !basicScaling)
             // Error
             if (trackTimestamps != trackKeyPairs)
             {
-                Printf("  WARNING: Animation Count (%u) does not match Pairs (%u)!\n", transformTimestamps, trackKeyPairs);
+                Printf("  WARNING: Animation Count (%u) does not match Pairs (%u)!\n", trackTimestamps, trackKeyPairs);
             }
             // Catch
             if (trackKeyPairs > 0 && trackKeyPairsOffset > 0) 
